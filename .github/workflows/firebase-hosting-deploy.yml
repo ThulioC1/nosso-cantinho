@@ -3,7 +3,7 @@ name: Firebase Hosting Deploy
 on:
   push:
     branches:
-      - master   # Ou 'main', se a sua branch principal for 'main'
+      - master  # ou 'main', dependendo de qual branch está sendo usada
 
 jobs:
   deploy:
@@ -22,10 +22,10 @@ jobs:
         run: npm install
 
       - name: Build the project
-        run: npm run build  # Ajuste conforme necessário para o seu projeto
+        run: npm run build
 
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-
+          firebaseToken: ${{ secrets.FIREBASE_TOKEN }}  # Usando o FIREBASE_TOKEN aqui
+          projectId: 'nosso-cantinho-fc205'  # Certifique-se de que o ID do seu projeto está correto
