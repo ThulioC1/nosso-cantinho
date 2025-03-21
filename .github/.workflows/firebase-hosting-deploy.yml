@@ -1,1 +1,36 @@
+name: Firebase Hosting Deploy
+
+on:
+  push:
+    branches:
+      - main   # Ou a branch que você deseja monitorar para o deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest   # A plataforma que o GitHub Actions usará para rodar o job
+
+    steps:
+      # 1. Fazendo checkout do repositório
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      # 2. Configurando o Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Você pode alterar a versão para a que está utilizando
+
+      # 3. Instalando dependências
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Construindo o projeto
+      - name: Build the project
+        run: npm run build  # Ou qualquer outro comando que seja necessário para gerar os arquivos finais
+
+      # 5. Realizando o deploy no Firebase Hosting
+      - name: Deploy to Firebase
+        uses: wzieba/Firebase-Action@v2
+        with:
+          firebase_token: ${{ secrets.FIREBASE_TOKEN }}  # Usando o token do Firebase do GitHub Secrets
 
