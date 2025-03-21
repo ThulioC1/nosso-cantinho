@@ -3,14 +3,14 @@ name: Firebase Hosting Deploy
 on:
   push:
     branches:
-      - master  # ou 'main', dependendo de qual branch está sendo usada
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Node.js
@@ -25,7 +25,6 @@ jobs:
         run: npm run build
 
       - name: Deploy to Firebase
-        uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: wzieba/Firebase-Action@v2
         with:
-          firebaseToken: ${{ secrets.FIREBASE_TOKEN }}  # Usando o FIREBASE_TOKEN aqui
-          projectId: 'nosso-cantinho-fc205'  # Certifique-se de que o ID do seu projeto está correto
+          firebaseToken: ${{ secrets.FIREBASE_TOKEN }}
