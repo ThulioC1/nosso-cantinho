@@ -25,6 +25,6 @@ jobs:
         run: npm run build  # Ajuste conforme necessário para o seu projeto
 
       - name: Deploy to Firebase
-        uses: wzieba/Firebase-Action@v2
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           firebase_token: ${{ secrets.FIREBASE_TOKEN }}
